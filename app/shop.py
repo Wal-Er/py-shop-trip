@@ -3,10 +3,11 @@ from typing import Dict, List
 
 
 def format_price(price: float) -> str:
-    if price.is_integer():
-        return str(int(price))
+    price_float = float(price)  # upewniamy się, że to float
+    if price_float.is_integer():
+        return str(int(price_float))
     else:
-        return f"{price}"
+        return str(price_float)
 
 
 class Shop:

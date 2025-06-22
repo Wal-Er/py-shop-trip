@@ -20,10 +20,13 @@ class Customer:
         self.car = car
 
     def calculate_trip_cost(self, shop: Shop, fuel_price: float) -> float:
-        distance = dist(self.location, shop.location)
-        fuel_to_shop = self.car.fuel_cost(distance, fuel_price)
-        fuel_home = self.car.fuel_cost(distance, fuel_price)
-        return round(fuel_to_shop + fuel_home, 2)
+        distance_to_shop = dist(self.location, shop.location)
+        distance_home = dist(shop.location, self.home_location)
+
+        cost_to_shop = self.car.fuel_cost(distance_to_shop, fuel_price)
+        cost_home = self.car.fuel_cost(distance_home, fuel_price)
+
+        return round(cost_to_shop + cost_home, 2)
 
     def can_afford(self, cost: float) -> bool:
         return self.money >= cost
